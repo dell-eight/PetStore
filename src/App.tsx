@@ -1,7 +1,11 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { ClipboardCheck, HeartHandshake, Menu, Phone, RotateCcw, Search, ShieldCheck, ShoppingBag, Truck } from "lucide-react";
 import { useState } from "react";
+import carryCardImage from "../assets/Hero_SmallCard_Carry.png";
+import hydrateCardImage from "../assets/Hero_SmallCard_Hydrate.png";
+import pawPureCardImage from "../assets/Hero_SmallCard_PawPure.png";
 import heroImage from "../assets/hero_image_petStore_v3-optimized.jpg";
+import logoImage from "../assets/Logo_v2.png";
 import { products, type Product } from "./data/products";
 
 const navItems = ["Shop", "Hydration", "Cleaning", "Travel Bags", "FAQ"];
@@ -285,10 +289,7 @@ function Header({ menuOpen, setMenuOpen }: HeaderProps) {
     <header className="site-header" aria-label="Primary navigation">
       <a className="brand" href="#" aria-label="WagTrail home">
         <span className="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <path d="M12.1 12.8c2.6 0 5.5 2.4 5.5 5 0 1.5-1.1 2.4-2.8 2.1-1-.2-1.8-.8-2.7-.8s-1.7.6-2.7.8c-1.7.3-2.8-.6-2.8-2.1 0-2.6 2.9-5 5.5-5Z" />
-            <path d="M6.2 11.4c-1.2.3-2.5-.8-2.9-2.4-.4-1.6.3-3.1 1.5-3.4s2.5.8 2.9 2.4c.4 1.6-.3 3.1-1.5 3.4Zm4-1.8c-1.2.1-2.2-1.2-2.3-2.8-.1-1.7.8-3.1 1.9-3.2 1.2-.1 2.2 1.2 2.3 2.8.1 1.7-.8 3.1-1.9 3.2Zm3.6 0c-1.2-.1-2-1.5-1.9-3.2.1-1.6 1.1-2.9 2.3-2.8 1.1.1 2 1.5 1.9 3.2-.1 1.6-1.1 2.9-2.3 2.8Zm4 1.8c-1.2-.3-1.9-1.8-1.5-3.4.4-1.6 1.7-2.7 2.9-2.4s1.9 1.8 1.5 3.4c-.4 1.6-1.7 2.7-2.9 2.4Z" />
-          </svg>
+          <img src={logoImage} alt="" />
         </span>
         <span>WagTrail</span>
       </a>
@@ -377,27 +378,29 @@ function HeroStage({ reduceMotion }: { reduceMotion: boolean }) {
         alt="A happy dog and cat in a warm WagTrail-style illustrated frame."
         variants={heroStageItemVariants}
       />
-      <FloatingCard className="float-hydrate" iconClass="water-icon" label="TrailSip" action="Hydrate" />
-      <FloatingCard className="float-clean" iconClass="paw-icon" label="PawPure" action="Clean up" />
-      <FloatingCard className="float-carry" iconClass="bag-icon" label="TrailPack" action="Carry" />
+      <FloatingCard className="float-hydrate" image={hydrateCardImage} label="TrailSip" action="Hydrate" />
+      <FloatingCard className="float-clean" image={pawPureCardImage} label="PawPure" action="Clean up" />
+      <FloatingCard className="float-carry" image={carryCardImage} label="TrailPack" action="Carry" />
     </motion.div>
   );
 }
 
 function FloatingCard({
   className,
-  iconClass,
+  image,
   label,
   action
 }: {
   className: string;
-  iconClass: string;
+  image: string;
   label: string;
   action: string;
 }) {
   return (
     <motion.article className={`float-card ${className}`} variants={heroFloatVariants} aria-label={`${label} product card`}>
-      <span className={`float-icon ${iconClass}`} aria-hidden="true" />
+      <span className="float-icon" aria-hidden="true">
+        <img src={image} alt="" />
+      </span>
       <div>
         <strong>{label}</strong>
         <span className="float-action">{action}</span>
