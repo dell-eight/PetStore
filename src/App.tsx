@@ -61,6 +61,73 @@ const motionTiming = {
   ease: [0.2, 0.7, 0.2, 1] as const
 };
 
+const heroCopyVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.12
+    }
+  }
+};
+
+const heroItemVariants = {
+  hidden: { opacity: 0, y: 22 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: motionTiming
+  }
+};
+
+const heroTitleVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.075,
+      delayChildren: 0.18
+    }
+  }
+};
+
+const heroTitleLineVariants = {
+  hidden: { opacity: 0, y: 36 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { ...motionTiming, duration: 0.72 }
+  }
+};
+
+const heroStageVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.14,
+      delayChildren: 0.28
+    }
+  }
+};
+
+const heroStageItemVariants = {
+  hidden: { opacity: 0, y: 22, scale: 0.96 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { ...motionTiming, duration: 0.8 }
+  }
+};
+
+const heroFloatVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { ...motionTiming, duration: 0.58 }
+  }
+};
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const reduceMotion = useReducedMotion();
@@ -74,38 +141,42 @@ function App() {
         <section className="hero">
           <motion.div
             className="hero-copy"
-            initial={reduceMotion ? false : { opacity: 0, y: 28 }}
-            animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-            transition={{ ...motionTiming, duration: 0.7 }}
+            variants={heroCopyVariants}
+            initial={reduceMotion ? false : "hidden"}
+            animate={reduceMotion ? undefined : "visible"}
           >
-            <p className="eyebrow">Welcome to WagTrail</p>
-            <h1>
-              <span>PET</span>
-              <span>WALKS</span>
-              <span>MADE</span>
-              <span>EASIER</span>
-            </h1>
-            <p className="hero-text">
+            <motion.p className="eyebrow" variants={heroItemVariants}>
+              Welcome to WagTrail
+            </motion.p>
+            <motion.h1 variants={heroTitleVariants}>
+              <motion.span variants={heroTitleLineVariants}>PET</motion.span>
+              <motion.span variants={heroTitleLineVariants}>WALKS</motion.span>
+              <motion.span variants={heroTitleLineVariants}>MADE</motion.span>
+              <motion.span variants={heroTitleLineVariants}>EASIER</motion.span>
+            </motion.h1>
+            <motion.p className="hero-text" variants={heroItemVariants}>
               Hydrate, clean, and carry everything your pet needs for walks, parks, road trips, and everyday
               outdoor adventures.
-            </p>
-            <div className="hero-ctas" aria-label="Hero actions">
+            </motion.p>
+            <motion.div className="hero-ctas" aria-label="Hero actions" variants={heroItemVariants}>
               <a className="button button-primary" href="#shop">
                 Shop Walk Essentials
               </a>
               <a className="button button-secondary" href="#products">
                 Build Your Walk Kit
               </a>
-            </div>
-            <p className="hero-assurance">Pre-launch walk kits for cleaner outings, easier packing, and happier pets.</p>
-            <div className="hero-metrics" aria-label="WagTrail highlights">
+            </motion.div>
+            <motion.p className="hero-assurance" variants={heroItemVariants}>
+              Pre-launch walk kits for cleaner outings, easier packing, and happier pets.
+            </motion.p>
+            <motion.div className="hero-metrics" aria-label="WagTrail highlights" variants={heroItemVariants}>
               <span>
                 <strong>3</strong> essentials
               </span>
               <span>
                 <strong>1</strong> daily kit
               </span>
-            </div>
+            </motion.div>
           </motion.div>
 
           <HeroStage reduceMotion={reduceMotion ?? false} />
@@ -293,17 +364,18 @@ function HeroStage({ reduceMotion }: { reduceMotion: boolean }) {
   return (
     <motion.div
       className="hero-stage"
-      initial={reduceMotion ? false : { opacity: 0, y: 18, scale: 0.96 }}
-      animate={reduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
-      transition={{ ...motionTiming, duration: 0.9 }}
+      variants={heroStageVariants}
+      initial={reduceMotion ? false : "hidden"}
+      animate={reduceMotion ? undefined : "visible"}
       aria-label="WagTrail dog and travel accessories"
     >
-      <div className="stage-shape shape-one" aria-hidden="true" />
-      <div className="stage-shape shape-two" aria-hidden="true" />
-      <img
+      <motion.div className="stage-shape shape-one" variants={heroStageItemVariants} aria-hidden="true" />
+      <motion.div className="stage-shape shape-two" variants={heroStageItemVariants} aria-hidden="true" />
+      <motion.img
         className="hero-image"
         src={heroImage}
         alt="A happy dog and cat in a warm WagTrail-style illustrated frame."
+        variants={heroStageItemVariants}
       />
       <FloatingCard className="float-hydrate" iconClass="water-icon" label="TrailSip" action="Hydrate" />
       <FloatingCard className="float-clean" iconClass="paw-icon" label="PawPure" action="Clean up" />
@@ -324,13 +396,13 @@ function FloatingCard({
   action: string;
 }) {
   return (
-    <article className={`float-card ${className}`} aria-label={`${label} product card`}>
+    <motion.article className={`float-card ${className}`} variants={heroFloatVariants} aria-label={`${label} product card`}>
       <span className={`float-icon ${iconClass}`} aria-hidden="true" />
       <div>
         <strong>{label}</strong>
         <span className="float-action">{action}</span>
       </div>
-    </article>
+    </motion.article>
   );
 }
 
