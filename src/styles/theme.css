@@ -1,0 +1,80 @@
+:root {
+  --font-display: Fredoka, Nunito, system-ui, sans-serif;
+  --font-body: Nunito, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --color-cream-50: #fffdf7;
+  --color-cream-100: #fff8ea;
+  --color-cream-200: #fff3d8;
+  --color-cream-300: #f8ead3;
+  --color-sand-300: #f1ddbd;
+  --color-yellow-300: #ffe4a2;
+  --color-yellow-500: #f7b844;
+  --color-orange-500: #e97829;
+  --color-orange-600: #c75717;
+  --color-sage-500: #8f9e73;
+  --color-sky-focus: #2563eb;
+  --color-ink-900: #211f1c;
+  --color-ink-650: #5d554d;
+  --color-ink-550: #746b61;
+  --color-line: rgba(33, 31, 28, 0.08);
+  --color-line-strong: rgba(33, 31, 28, 0.13);
+
+  --surface-page: var(--color-cream-100);
+  --surface-page-soft: var(--color-cream-50);
+  --surface-card: #fffaf1;
+  --surface-card-strong: #fffaf0;
+  --surface-control: var(--color-cream-200);
+  --surface-glass: rgba(255, 250, 241, 0.84);
+  --surface-glass-strong: rgba(255, 253, 248, 0.93);
+  --text-primary: var(--color-ink-900);
+  --text-muted: var(--color-ink-650);
+  --accent-primary: var(--color-orange-500);
+  --accent-warm: var(--color-yellow-500);
+  --accent-sage: var(--color-sage-500);
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --container: 1180px;
+  --page-gutter: clamp(16px, 4vw, 32px);
+
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-xl: 26px;
+  --radius-2xl: 34px;
+  --radius-pill: 999px;
+
+  --shadow-xs: 0 9px 22px rgba(80, 55, 23, 0.1);
+  --shadow-sm: 0 12px 30px rgba(80, 56, 28, 0.1);
+  --shadow-md: 0 18px 48px rgba(80, 56, 28, 0.12);
+  --shadow-lg: 0 28px 80px rgba(84, 61, 31, 0.16);
+  --shadow-focus: 0 0 0 3px rgba(37, 99, 235, 0.28);
+
+  --duration-fast: 160ms;
+  --duration-base: 220ms;
+  --duration-slow: 420ms;
+  --ease-standard: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --control-size: 44px;
+
+  --cream: var(--color-cream-100);
+  --cream-soft: var(--color-cream-50);
+  --card: var(--surface-card);
+  --sand: var(--color-sand-300);
+  --sun: var(--color-yellow-500);
+  --sun-soft: var(--color-yellow-300);
+  --orange: var(--color-orange-500);
+  --sage: var(--color-sage-500);
+  --charcoal: var(--color-ink-900);
+  --muted: var(--text-muted);
+  --line: var(--color-line);
+  --shadow: var(--shadow-lg);
+  --soft-shadow: var(--shadow-md);
+}
