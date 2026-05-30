@@ -4,7 +4,12 @@ import pawBubblesImage from "@assets/Paw_&_bubbles.png";
 import pawTrailImage from "@assets/PawTrail.png";
 import { ClipboardCheck, HeartHandshake, RotateCcw, ShieldCheck, Truck, type LucideIcon } from "lucide-react";
 
-export const navItems = ["Shop", "Hydration", "Cleaning", "Travel Bags", "FAQ"];
+export const navItems = [
+  { label: "Home", href: "/" },
+  { label: "Shop", href: "/products" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "Contact", href: "/contact" }
+] as const;
 
 export const trustItems = [
   { image: pawTrailImage, label: "Built for daily walks" },

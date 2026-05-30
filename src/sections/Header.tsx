@@ -1,15 +1,19 @@
 import { Menu, Phone, Search, ShoppingBag } from "lucide-react";
 import logoImage from "@assets/Logo_v2.png";
+import { useCart } from "@/cart/CartContext";
 import { IconButton } from "@/components/ui/IconButton";
 import { navItems } from "@/constants/site";
-import { slugifyNavItem } from "@/lib/slugify";
+import { isNavItemActive, type CurrentLocation } from "@/lib/navigation";
 
 type HeaderProps = {
   menuOpen: boolean;
   setMenuOpen: (open: boolean) => void;
+  currentLocation: CurrentLocation;
 };
 
-export function Header({ menuOpen, setMenuOpen }: HeaderProps) {
+export function Header({ menuOpen, setMenuOpen, currentLocation }: HeaderProps) {
+  const { count, openCart } = useCart();
+
   return (
     <header className="site-header" aria-label="Primary navigation">
       <a className="brand" href="#" aria-label="WagTrail home">
@@ -20,23 +24,28 @@ export function Header({ menuOpen, setMenuOpen }: HeaderProps) {
       </a>
 
       <nav className="desktop-nav" aria-label="Main menu">
-        {navItems.map((item) => (
-          <a key={item} href={`#${slugifyNavItem(item)}`}>
-            {item}
-          </a>
-        ))}
+        {navItems.map((item) => {
+          const active = isNavItemActive(item, currentLocation);
+
+          return (
+            <a key={item.href} className={active ? "is-active" : undefined} href={item.href} aria-current={active ? "page" : undefined}>
+              {item.label}
+            </a>
+          );
+        })}
       </nav>
 
       <div className="header-actions">
         <IconButton label="Search">
           <Search size={20} />
         </IconButton>
-        <IconButton label="Cart">
+        <button className="icon-button cart-icon-button" type="button" aria-label={`Open cart with ${count} items`} onClick={openCart}>
           <ShoppingBag size={20} />
-        </IconButton>
-        <IconButton label="Contact WagTrail">
+          {count > 0 && <span className="cart-count">{count}</span>}
+        </button>
+        <a className="icon-button" href="/contact" aria-label="Contact WagTrail">
           <Phone size={20} />
-        </IconButton>
+        </a>
         <button
           className="menu-toggle"
           type="button"

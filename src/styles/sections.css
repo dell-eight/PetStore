@@ -8,6 +8,12 @@
   margin-inline: auto;
 }
 
+.reveal-section {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: opacity, transform;
+}
+
 .trust-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

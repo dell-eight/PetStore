@@ -64,13 +64,16 @@
   color: var(--text-muted);
   font-size: 0.9rem;
   font-weight: 800;
-  transition: color var(--duration-fast) ease, background var(--duration-fast) ease, transform var(--duration-fast) ease;
+  transition: color var(--duration-fast) ease, background var(--duration-fast) ease;
 }
 
 .desktop-nav a:hover {
   background: #fff4db;
   color: var(--text-primary);
-  transform: translateY(-1px);
+}
+
+.desktop-nav a.is-active {
+  color: var(--accent-primary);
 }
 
 .header-actions {
