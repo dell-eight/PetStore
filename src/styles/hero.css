@@ -46,8 +46,24 @@ h1 {
   letter-spacing: 0;
 }
 
+.hero-title {
+  transform: translateZ(0);
+}
+
 h1 span {
   display: block;
+}
+
+.hero-title-line {
+  backface-visibility: hidden;
+  transform-origin: left center;
+  will-change: opacity, transform;
+}
+
+.hero-copy-motion {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: opacity, transform;
 }
 
 .hero-text {
@@ -150,12 +166,15 @@ h1 span {
   position: relative;
   isolation: isolate;
   min-height: clamp(420px, 46vw, 560px);
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .stage-shape {
   position: absolute;
   z-index: -2;
   pointer-events: none;
+  will-change: opacity, transform;
 }
 
 .shape-one {
@@ -185,6 +204,8 @@ h1 span {
   object-position: center;
   border-radius: clamp(30px, 4vw, 42px);
   box-shadow: 0 28px 70px rgba(76, 49, 24, 0.2);
+  backface-visibility: hidden;
+  will-change: opacity, transform;
 }
 
 .float-card {
@@ -199,8 +220,13 @@ h1 span {
   background: var(--surface-glass-strong);
   box-shadow: var(--shadow-md);
   backdrop-filter: blur(14px);
-  animation: float-card 4.8s ease-in-out infinite;
   transition: transform var(--duration-base) ease, box-shadow var(--duration-base) ease;
+  backface-visibility: hidden;
+  will-change: opacity, translate;
+}
+
+.hero-stage.is-float-ready .float-card {
+  animation: float-card 4.8s ease-in-out infinite;
 }
 
 .float-card:hover {
@@ -250,12 +276,12 @@ h1 span {
   right: -4%;
   top: 34%;
   transform: rotate(4deg);
-  animation-delay: -1.4s;
+  animation-duration: 5.2s;
 }
 
 .float-carry {
   left: 7%;
   bottom: 6%;
   transform: rotate(5deg);
-  animation-delay: -2.8s;
+  animation-duration: 5.6s;
 }

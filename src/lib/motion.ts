@@ -4,7 +4,7 @@ export const reveal = {
 };
 
 export const motionTiming = {
-  duration: 0.62,
+  duration: 1.50,
   ease: [0.2, 0.7, 0.2, 1] as const
 };
 
@@ -22,7 +22,7 @@ export const heroItemVariants = {
   hidden: { opacity: 0, y: 22 },
   visible: {
     opacity: 1,
-    y: 0,
+    y: 0.01,
     transition: motionTiming
   }
 };
@@ -41,7 +41,7 @@ export const heroTitleLineVariants = {
   hidden: { opacity: 0, y: 36 },
   visible: {
     opacity: 1,
-    y: 0,
+    y: 0.01,
     transition: { ...motionTiming, duration: 0.72 }
   }
 };

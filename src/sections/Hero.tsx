@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from "framer-motion";
+import { useState } from "react";
 import carryCardImage from "@assets/Hero_SmallCard_Carry.png";
 import hydrateCardImage from "@assets/Hero_SmallCard_Hydrate.png";
 import pawPureCardImage from "@assets/Hero_SmallCard_PawPure.png";
@@ -13,6 +14,10 @@ import {
   heroTitleVariants
 } from "@/lib/motion";
 
+function keepHeroTransformOnCompositor(_: unknown, generatedTransform: string) {
+  return generatedTransform === "none" ? "translateZ(0)" : `${generatedTransform} translateZ(0)`;
+}
+
 export function Hero() {
   const reduceMotion = useReducedMotion();
 
@@ -24,20 +29,33 @@ export function Hero() {
         initial={reduceMotion ? false : "hidden"}
         animate={reduceMotion ? undefined : "visible"}
       >
-        <motion.p className="eyebrow" variants={heroItemVariants}>
+        <motion.p className="eyebrow hero-copy-motion" variants={heroItemVariants} transformTemplate={keepHeroTransformOnCompositor}>
           Welcome to WagTrail
         </motion.p>
-        <motion.h1 variants={heroTitleVariants}>
-          <motion.span variants={heroTitleLineVariants}>PET</motion.span>
-          <motion.span variants={heroTitleLineVariants}>WALKS</motion.span>
-          <motion.span variants={heroTitleLineVariants}>MADE</motion.span>
-          <motion.span variants={heroTitleLineVariants}>EASIER</motion.span>
+        <motion.h1 className="hero-title" variants={heroTitleVariants}>
+          <motion.span className="hero-title-line" variants={heroTitleLineVariants} transformTemplate={keepHeroTransformOnCompositor}>
+            PET
+          </motion.span>
+          <motion.span className="hero-title-line" variants={heroTitleLineVariants} transformTemplate={keepHeroTransformOnCompositor}>
+            WALKS
+          </motion.span>
+          <motion.span className="hero-title-line" variants={heroTitleLineVariants} transformTemplate={keepHeroTransformOnCompositor}>
+            MADE
+          </motion.span>
+          <motion.span className="hero-title-line" variants={heroTitleLineVariants} transformTemplate={keepHeroTransformOnCompositor}>
+            EASIER
+          </motion.span>
         </motion.h1>
-        <motion.p className="hero-text" variants={heroItemVariants}>
+        <motion.p className="hero-text hero-copy-motion" variants={heroItemVariants} transformTemplate={keepHeroTransformOnCompositor}>
           Hydrate, clean, and carry everything your pet needs for walks, parks, road trips, and everyday outdoor
           adventures.
         </motion.p>
-        <motion.div className="hero-ctas" aria-label="Hero actions" variants={heroItemVariants}>
+        <motion.div
+          className="hero-ctas hero-copy-motion"
+          aria-label="Hero actions"
+          variants={heroItemVariants}
+          transformTemplate={keepHeroTransformOnCompositor}
+        >
           <a className="button button-primary" href="#shop">
             Shop Walk Essentials
           </a>
@@ -45,10 +63,15 @@ export function Hero() {
             Build Your Walk Kit
           </a>
         </motion.div>
-        <motion.p className="hero-assurance" variants={heroItemVariants}>
+        <motion.p className="hero-assurance hero-copy-motion" variants={heroItemVariants} transformTemplate={keepHeroTransformOnCompositor}>
           Pre-launch walk kits for cleaner outings, easier packing, and happier pets.
         </motion.p>
-        <motion.div className="hero-metrics" aria-label="WagTrail highlights" variants={heroItemVariants}>
+        <motion.div
+          className="hero-metrics hero-copy-motion"
+          aria-label="WagTrail highlights"
+          variants={heroItemVariants}
+          transformTemplate={keepHeroTransformOnCompositor}
+        >
           <span>
             <strong>3</strong> essentials
           </span>
@@ -64,9 +87,11 @@ export function Hero() {
 }
 
 function HeroStage({ reduceMotion }: { reduceMotion: boolean }) {
+  const [floatReady, setFloatReady] = useState(reduceMotion);
+
   return (
     <motion.div
-      className="hero-stage"
+      className={`hero-stage ${floatReady ? "is-float-ready" : ""}`}
       variants={heroStageVariants}
       initial={reduceMotion ? false : "hidden"}
       animate={reduceMotion ? undefined : "visible"}
@@ -82,7 +107,13 @@ function HeroStage({ reduceMotion }: { reduceMotion: boolean }) {
       />
       <FloatingCard className="float-hydrate" image={hydrateCardImage} label="TrailSip" action="Hydrate" />
       <FloatingCard className="float-clean" image={pawPureCardImage} label="PawPure" action="Clean up" />
-      <FloatingCard className="float-carry" image={carryCardImage} label="TrailPack" action="Carry" />
+      <FloatingCard
+        className="float-carry"
+        image={carryCardImage}
+        label="TrailPack"
+        action="Carry"
+        onRevealComplete={() => setFloatReady(true)}
+      />
     </motion.div>
   );
 }
@@ -92,11 +123,17 @@ type FloatingCardProps = {
   image: string;
   label: string;
   action: string;
+  onRevealComplete?: () => void;
 };
 
-function FloatingCard({ className, image, label, action }: FloatingCardProps) {
+function FloatingCard({ className, image, label, action, onRevealComplete }: FloatingCardProps) {
   return (
-    <motion.article className={`float-card ${className}`} variants={heroFloatVariants} aria-label={`${label} product card`}>
+    <motion.article
+      className={`float-card ${className}`}
+      variants={heroFloatVariants}
+      onAnimationComplete={onRevealComplete}
+      aria-label={`${label} product card`}
+    >
       <span className="float-icon" aria-hidden="true">
         <img src={image} alt="" />
       </span>

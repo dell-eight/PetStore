@@ -194,6 +194,7 @@
     display: none;
   }
 
+  .hero-stage.is-float-ready .float-card,
   .float-card {
     min-width: 126px;
     padding: 9px;
