@@ -14,8 +14,16 @@ body {
   background:
     linear-gradient(135deg, rgba(247, 184, 68, 0.18) 0 14%, transparent 14% 100%),
     linear-gradient(180deg, var(--surface-page) 0%, var(--surface-page-soft) 54%, var(--color-cream-300) 100%);
+  background-position:
+    0 0,
+    0 0;
+  background-repeat: no-repeat;
+  background-size:
+    100% 100%,
+    100% 100%;
   color: var(--text-primary);
   font-family: var(--font-body);
+  animation: hero-background-settle 1.15s var(--ease-standard) both;
 }
 
 main {

@@ -8,6 +8,19 @@
   }
 }
 
+@keyframes hero-background-settle {
+  0% {
+    background-position:
+      -34vw -20vh,
+      0 0;
+  }
+  100% {
+    background-position:
+      0 0,
+      0 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -20,5 +33,11 @@
 
   .float-card {
     animation: none !important;
+  }
+
+  body {
+    background-position:
+      0 0,
+      0 0 !important;
   }
 }
