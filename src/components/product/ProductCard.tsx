@@ -2,7 +2,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 import { ShoppingBag } from "lucide-react";
 import { useCart } from "@/cart/CartContext";
-import { motionTiming } from "@/lib/motion";
+import { cardItem, motionTiming } from "@/lib/motion";
 import { formatPrice, type Product } from "@/data/products";
 
 type ProductCardProps = {
@@ -24,6 +24,7 @@ export function ProductCard({ product }: ProductCardProps) {
     <motion.article
       className="product-card"
       id={product.id}
+      variants={reduceMotion ? undefined : cardItem}
       whileHover={reduceMotion ? undefined : { y: -8, rotateX: 1.5, rotateY: -1.5 }}
       transition={motionTiming}
     >
