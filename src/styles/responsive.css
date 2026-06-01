@@ -105,6 +105,48 @@
     grid-template-columns: 1fr;
   }
 
+  .products-page {
+    width: calc(100% - 32px);
+    padding-top: 42px;
+  }
+
+  .shop-hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    gap: 18px;
+  }
+
+  .shop-hero-copy {
+    text-align: center;
+  }
+
+  .shop-hero-copy h1 {
+    max-width: 8.2em;
+    margin-left: auto;
+    margin-right: auto;
+    text-wrap: balance;
+  }
+
+  .shop-hero-copy > p:not(.eyebrow) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .shop-feature-chips {
+    max-width: 760px;
+    margin-inline: auto;
+  }
+
+  .shop-hero-art {
+    min-height: clamp(320px, 50vw, 430px);
+    width: min(720px, 100%);
+    margin-inline: auto;
+  }
+
+  .products-page .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .product-detail-layout,
   .cart-page-layout,
   .contact-layout,
@@ -117,9 +159,17 @@
     gap: 20px;
   }
 
+  .contact-page {
+    transform: none;
+  }
+
   .contact-hero-copy {
     max-width: none;
     text-align: center;
+  }
+
+  .contact-hero-panel {
+    transform: none;
   }
 
   .contact-hero-copy .eyebrow {
@@ -296,6 +346,60 @@
     padding: 54px 0;
   }
 
+  .products-page {
+    width: calc(100% - 22px);
+    max-width: calc(100vw - 22px);
+    padding-top: 30px;
+  }
+
+  .shop-hero-copy h1 {
+    max-width: 100%;
+    font-size: clamp(3rem, 13.6vw, 4rem);
+    line-height: 0.92;
+    text-wrap: balance;
+  }
+
+  .shop-hero-copy > p:not(.eyebrow) {
+    max-width: 20.5rem;
+    font-size: 0.96rem;
+  }
+
+  .shop-feature-chips {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .shop-feature-chip {
+    min-height: 64px;
+  }
+
+  .shop-hero-art {
+    min-height: clamp(250px, 64vw, 340px);
+  }
+
+  .shop-bundle-image {
+    width: min(500px, 106%);
+    margin-left: 0;
+  }
+
+  .shop-products-heading {
+    margin-top: 12px;
+  }
+
+  .shop-products-heading h2 {
+    font-size: clamp(1.8rem, 9vw, 2.4rem);
+  }
+
+  .shop-products-heading p {
+    max-width: 19rem;
+    margin-inline: auto;
+  }
+
+  .products-page .product-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
   .product-card {
     min-height: auto;
     padding: 18px;
@@ -369,7 +473,6 @@
   .contact-pet-image {
     right: 0;
     width: 100%;
-    border-radius: 30px;
   }
 
   .contact-float-card {
@@ -399,10 +502,6 @@
   }
 
   .contact-float-replies {
-    display: none;
-  }
-
-  .contact-paw-trail {
     display: none;
   }
 
