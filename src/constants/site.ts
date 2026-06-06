@@ -1,13 +1,22 @@
-import chatBubbleCheckImage from "@assets/ChatBubble_&_Check.png";
-import miniPouchImage from "@assets/MiniPouch.png";
-import pawBubblesImage from "@assets/Paw_&_bubbles.png";
-import pawTrailImage from "@assets/PawTrail.png";
-import { ClipboardCheck, HeartHandshake, RotateCcw, ShieldCheck, Truck, type LucideIcon } from "lucide-react";
+import chatBubbleCheckImage from "@assets/optimized/ChatBubble_&_Check.webp";
+import miniPouchImage from "@assets/optimized/MiniPouch.webp";
+import pawBubblesImage from "@assets/optimized/Paw_&_bubbles.webp";
+import pawTrailImage from "@assets/optimized/PawTrail.webp";
+import {
+  ClipboardCheck,
+  HeartHandshake,
+  MessageCircle,
+  PackageCheck,
+  RotateCcw,
+  ShieldCheck,
+  Truck,
+  type LucideIcon
+} from "lucide-react";
 
 export const navItems = [
   { label: "Home", href: "/" },
   { label: "Shop", href: "/products" },
-  { label: "FAQ", href: "/#faq" },
+  { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" }
 ] as const;
 
@@ -27,38 +36,83 @@ export type ReassuranceItem = {
 export const reassuranceItems: ReassuranceItem[] = [
   {
     icon: Truck,
-    title: "Shipping clarity before launch",
-    text: "Shipping windows and delivery regions will be published before checkout opens."
+    title: "Clear delivery updates",
+    text: "Processing and shipping details are confirmed before fulfillment so buyers know what happens after checkout."
   },
   {
     icon: RotateCcw,
-    title: "Returns under review",
-    text: "Return and refund terms are being finalized so buyers know what to expect before purchasing."
+    title: "Support if something arrives wrong",
+    text: "If an item arrives damaged, customers can send order details and photos so the issue can be reviewed quickly."
   },
   {
     icon: ShieldCheck,
-    title: "Secure checkout planned",
-    text: "Payments will run through the selected ecommerce checkout provider, not through this static preview."
+    title: "Secure PayMongo checkout",
+    text: "Checkout is handled through PayMongo so payment steps stay clear, familiar, and protected."
   },
   {
     icon: ClipboardCheck,
-    title: "Care notes included",
-    text: "Each walking essential will ship with simple rinse, dry, and storage guidance."
+    title: "Simple care guidance",
+    text: "Each walking essential includes easy use and care notes for cleaner daily routines."
+  }
+];
+
+export const checkoutConfidenceItems: ReassuranceItem[] = [
+  {
+    icon: ShieldCheck,
+    title: "Secure checkout",
+    text: "PayMongo handles the payment flow."
+  },
+  {
+    icon: PackageCheck,
+    title: "Order updates",
+    text: "Processing and shipping details are confirmed before fulfillment."
+  },
+  {
+    icon: MessageCircle,
+    title: "Support nearby",
+    text: "Questions before ordering? Send us a message anytime."
   }
 ];
 
 export const faqItems = [
   {
-    question: "Are WagTrail products available now?",
-    answer: "This is a pre-launch homepage. Final product pages, inventory, and checkout are still being prepared."
+    question: "What products does WagTrail sell?",
+    answer:
+      "WagTrail offers smart walk and travel essentials for pets, including hydration bottles, cleaning tools, and carry accessories designed to make daily walks cleaner, easier, and happier."
   },
   {
-    question: "Which item should I start with?",
-    answer: "TrailSip is the easiest daily pick, PawPure is for muddy paws, and TrailPack keeps the full kit together."
+    question: "Are your products for dogs only?",
+    answer:
+      "Most of our products are made for dogs, but some items may also be useful for cats depending on their size, behavior, and travel needs."
   },
   {
-    question: "What are the shipping and return details?",
-    answer: "The exact shipping regions, delivery timing, and return window will be reviewed before checkout goes live."
+    question: "How long does delivery take?",
+    answer:
+      "Delivery times may vary depending on your location. After placing an order, customers will receive updates about processing and shipping."
+  },
+  {
+    question: "Do you offer Cash on Delivery?",
+    answer:
+      "Cash on Delivery may be offered depending on the final checkout and delivery setup. Available payment options will be clearly shown before customers place an order."
+  },
+  {
+    question: "How do I know which product is right for my pet?",
+    answer:
+      "Each product page should include simple details, use cases, and recommendations to help customers choose the right item for their pet's walking or travel routine."
+  },
+  {
+    question: "Can I contact you before ordering?",
+    answer: "Yes. Customers can contact us through the contact page for product questions, order concerns, or general support."
+  },
+  {
+    question: "What if I receive a damaged item?",
+    answer:
+      "Customers should contact support with photos of the item and order details so the issue can be reviewed and resolved."
+  },
+  {
+    question: "Do you accept returns or exchanges?",
+    answer:
+      "Returns and exchanges are planned to be handled with a customer-friendly policy. The final return window, item condition rules, and exchange steps will be updated once the store policy is finalized."
   }
 ];
 

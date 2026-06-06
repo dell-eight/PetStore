@@ -2,6 +2,7 @@ import { X } from "lucide-react";
 import { useState } from "react";
 import { useCart } from "@/cart/CartContext";
 import { CartLineItem } from "@/components/cart/CartLineItem";
+import { CheckoutConfidence } from "@/components/ui/CheckoutConfidence";
 import { formatPrice } from "@/data/products";
 import { createPayMongoCheckout } from "@/lib/checkout";
 
@@ -57,7 +58,7 @@ export function CartDrawer() {
               ))}
             </div>
             <div className="cart-summary">
-              <div>
+              <div className="cart-summary-row">
                 <span>Subtotal</span>
                 <strong>{formatPrice(subtotal)}</strong>
               </div>
@@ -69,6 +70,7 @@ export function CartDrawer() {
               <a className="button button-secondary" href="/cart" onClick={closeCart}>
                 View Full Cart
               </a>
+              <CheckoutConfidence compact />
             </div>
           </>
         )}

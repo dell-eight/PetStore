@@ -4,6 +4,7 @@ import { CartDrawer } from "@/components/cart/CartDrawer";
 import { CartPage } from "@/pages/CartPage";
 import { CheckoutCancelPage, CheckoutSuccessPage } from "@/pages/CheckoutStatusPages";
 import { ContactPage } from "@/pages/ContactPage";
+import { FaqPage } from "@/pages/FaqPage";
 import { HomePage } from "@/pages/HomePage";
 import { ProductDetailPage } from "@/pages/ProductDetailPage";
 import { ProductsPage } from "@/pages/ProductsPage";
@@ -14,6 +15,7 @@ import { getCurrentLocation } from "@/lib/navigation";
 function renderRoute(pathname: string) {
   if (pathname === "/") return <HomePage />;
   if (pathname === "/products") return <ProductsPage />;
+  if (pathname === "/faq") return <FaqPage />;
   if (pathname === "/cart") return <CartPage />;
   if (pathname === "/contact") return <ContactPage />;
   if (pathname === "/checkout/success") return <CheckoutSuccessPage />;
@@ -74,7 +76,7 @@ function App() {
     <CartProvider>
       <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} currentLocation={currentLocation} />
       <MobileNav open={menuOpen} currentLocation={currentLocation} onNavigate={() => setMenuOpen(false)} />
-      <MobileQuickCta />
+      <MobileQuickCta currentLocation={currentLocation} />
       <CartDrawer />
       <main>{renderRoute(currentLocation.pathname)}</main>
     </CartProvider>

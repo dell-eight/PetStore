@@ -437,6 +437,29 @@ h2 {
   gap: 12px;
 }
 
+.faq-preview-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  width: fit-content;
+  margin-top: 4px;
+  padding: 0 13px;
+  border-radius: var(--radius-pill);
+  background: #fff4db;
+  color: var(--accent-primary);
+  font-weight: 950;
+  transition:
+    background var(--duration-fast) ease,
+    color var(--duration-fast) ease,
+    transform var(--duration-fast) ease;
+}
+
+.faq-preview-link:hover {
+  background: var(--text-primary);
+  color: #fff8ec;
+  transform: translateY(-1px);
+}
+
 .faq-item {
   display: grid;
   grid-template-columns: minmax(220px, 0.42fr) minmax(0, 0.58fr);

@@ -9,7 +9,7 @@ export function FinalCtaSection() {
         <p className="eyebrow">Built for outside</p>
         <h2>Ready to shape the launch kit around real walking routines.</h2>
       </motion.div>
-      <motion.a className="button button-primary" href="mailto:hello@wagtrail.example" variants={sectionItem}>
+      <motion.a className="button button-primary" href="/contact" variants={sectionItem}>
         Contact WagTrail
       </motion.a>
     </RevealSection>

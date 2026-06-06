@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Leaf, PawPrint, ShoppingBag } from "lucide-react";
 import { ProductCard } from "@/components/product/ProductCard";
+import { checkoutConfidenceItems } from "@/constants/site";
 import { products } from "@/data/products";
 import shopBundleImage from "@assets/products/all-products_2.webp";
 import { sectionStagger } from "@/lib/motion";
@@ -21,6 +22,10 @@ const shopMockupItem = {
     transition: { duration: 0.72, delay: 0.18, ease: [0.2, 0.7, 0.2, 1] as const }
   }
 };
+
+function keepShopTransformOnCompositor(_: unknown, generatedTransform: string) {
+  return generatedTransform === "none" ? "translateZ(0)" : `${generatedTransform} translateZ(0)`;
+}
 
 const featureChips = [
   {
@@ -44,23 +49,24 @@ export function ProductsPage() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <motion.section
-      className="page-shell products-page"
-      variants={sectionStagger}
-      initial={reduceMotion ? false : "hidden"}
-      animate={reduceMotion ? undefined : "visible"}
-    >
+    <section className="page-shell products-page">
       <div className="shop-hero" aria-labelledby="shop-page-title">
-        <motion.div className="shop-hero-copy" variants={sectionStagger}>
-          <motion.p className="eyebrow shop-eyebrow" variants={shopRevealItem}>
+        <motion.div
+          className="shop-hero-copy"
+          variants={sectionStagger}
+          initial={reduceMotion ? false : "hidden"}
+          animate={reduceMotion ? undefined : "visible"}
+          transformTemplate={keepShopTransformOnCompositor}
+        >
+          <motion.p className="eyebrow shop-eyebrow" variants={shopRevealItem} transformTemplate={keepShopTransformOnCompositor}>
             Shop all products
           </motion.p>
-          <motion.h1 id="shop-page-title" variants={shopRevealItem}>
+          <motion.h1 id="shop-page-title" variants={shopRevealItem} transformTemplate={keepShopTransformOnCompositor}>
             Walk essentials
             <span>for cleaner,</span>
             <span>easier outings.</span>
           </motion.h1>
-          <motion.p variants={shopRevealItem}>
+          <motion.p variants={shopRevealItem} transformTemplate={keepShopTransformOnCompositor}>
             Shop the first WagTrail pre-launch kit: hydration, cleanup, and carry gear for daily pet routines.
           </motion.p>
           <motion.div className="shop-feature-chips" variants={sectionStagger}>
@@ -68,7 +74,7 @@ export function ProductsPage() {
               const Icon = item.icon;
 
               return (
-                <motion.div className="shop-feature-chip" key={item.label} variants={shopRevealItem}>
+                <motion.div className="shop-feature-chip" key={item.label} variants={shopRevealItem} transformTemplate={keepShopTransformOnCompositor}>
                   <span aria-hidden="true">
                     <Icon size={20} />
                   </span>
@@ -82,12 +88,51 @@ export function ProductsPage() {
           </motion.div>
         </motion.div>
 
-        <motion.div className="shop-hero-art" variants={shopMockupItem} aria-label="WagTrail walk essentials bundle">
+        <motion.div
+          className="shop-hero-art"
+          variants={shopMockupItem}
+          initial={reduceMotion ? false : "hidden"}
+          animate={reduceMotion ? undefined : "visible"}
+          transformTemplate={keepShopTransformOnCompositor}
+          aria-label="WagTrail walk essentials bundle"
+        >
           <img className="shop-bundle-image" src={shopBundleImage} alt="TrailSip, TrailPack, and PawPure product bundle" />
         </motion.div>
       </div>
 
-      <motion.div className="shop-products-heading" variants={shopRevealItem}>
+      <motion.div
+        className="shop-confidence-strip"
+        variants={sectionStagger}
+        initial={reduceMotion ? false : "hidden"}
+        whileInView={reduceMotion ? undefined : "visible"}
+        viewport={{ once: true, amount: 0.35 }}
+        aria-label="Shopping confidence details"
+      >
+        {checkoutConfidenceItems.map((item) => {
+          const Icon = item.icon;
+
+          return (
+            <motion.div className="shop-confidence-item" key={item.title} variants={shopRevealItem} transformTemplate={keepShopTransformOnCompositor}>
+              <span aria-hidden="true">
+                <Icon size={18} />
+              </span>
+              <div>
+                <strong>{item.title}</strong>
+                <small>{item.text}</small>
+              </div>
+            </motion.div>
+          );
+        })}
+      </motion.div>
+
+      <motion.div
+        className="shop-products-heading"
+        variants={shopRevealItem}
+        initial={reduceMotion ? false : "hidden"}
+        whileInView={reduceMotion ? undefined : "visible"}
+        viewport={{ once: true, amount: 0.35 }}
+        transformTemplate={keepShopTransformOnCompositor}
+      >
         <div aria-hidden="true" />
         <h2>Our Walk Essentials</h2>
         <div aria-hidden="true" />
@@ -99,6 +144,6 @@ export function ProductsPage() {
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
-    </motion.section>
+    </section>
   );
 }

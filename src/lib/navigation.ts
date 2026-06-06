@@ -17,10 +17,6 @@ export function isNavItemActive(item: (typeof navItems)[number], location: Curre
     return location.pathname === "/" && location.hash !== "#faq";
   }
 
-  if (item.href === "/#faq") {
-    return location.pathname === "/" && location.hash === "#faq";
-  }
-
   if (item.href === "/products") {
     return location.pathname === "/products" || location.pathname.startsWith("/products/");
   }

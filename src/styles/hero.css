@@ -100,6 +100,7 @@ h1 span {
   min-height: 52px;
   overflow: hidden;
   padding: 0 22px;
+  border: 1px solid transparent;
   border-radius: var(--radius-pill);
   font-size: 0.95rem;
   font-weight: 900;
@@ -133,6 +134,7 @@ h1 span {
 }
 
 .button-secondary {
+  border-color: rgba(33, 31, 28, 0.08);
   background: #fff;
   color: var(--text-primary);
   box-shadow: var(--shadow-sm);

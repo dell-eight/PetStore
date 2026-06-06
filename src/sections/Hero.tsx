@@ -1,8 +1,8 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
-import carryCardImage from "@assets/Hero_SmallCard_Carry.png";
-import hydrateCardImage from "@assets/Hero_SmallCard_Hydrate.png";
-import pawPureCardImage from "@assets/Hero_SmallCard_PawPure.png";
+import carryCardImage from "@assets/optimized/Hero_SmallCard_Carry.webp";
+import hydrateCardImage from "@assets/optimized/Hero_SmallCard_Hydrate.webp";
+import pawPureCardImage from "@assets/optimized/Hero_SmallCard_PawPure.webp";
 import heroImage from "@assets/hero_image_petStore_v3-optimized.jpg";
 import {
   heroCopyVariants,

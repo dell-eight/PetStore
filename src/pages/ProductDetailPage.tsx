@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { ArrowLeft, Check, Minus, Plus, ShoppingBag, Zap } from "lucide-react";
 import { useCart } from "@/cart/CartContext";
 import { ProductCard } from "@/components/product/ProductCard";
+import { CheckoutConfidence } from "@/components/ui/CheckoutConfidence";
 import { formatPrice, getProductBySlug, products } from "@/data/products";
 
 type ProductDetailPageProps = {
@@ -86,6 +87,8 @@ export function ProductDetailPage({ slug }: ProductDetailPageProps) {
               Buy Now
             </button>
           </div>
+
+          <CheckoutConfidence compact />
 
           <div className="purchase-reassurance">
             <p>{product.shippingNote}</p>

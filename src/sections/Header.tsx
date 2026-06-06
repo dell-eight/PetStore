@@ -1,5 +1,5 @@
 import { Menu, Phone, Search, ShoppingBag } from "lucide-react";
-import logoImage from "@assets/Logo.png";
+import logoImage from "@assets/optimized/Logo.webp";
 import { useCart } from "@/cart/CartContext";
 import { IconButton } from "@/components/ui/IconButton";
 import { navItems } from "@/constants/site";

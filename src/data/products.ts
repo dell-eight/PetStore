@@ -1,6 +1,6 @@
-import carryImage from "@assets/Hero_SmallCard_Carry.png";
-import hydrateImage from "@assets/Hero_SmallCard_Hydrate.png";
-import pawPureImage from "@assets/Hero_SmallCard_PawPure.png";
+import carryImage from "@assets/optimized/Hero_SmallCard_Carry.webp";
+import hydrateImage from "@assets/optimized/Hero_SmallCard_Hydrate.webp";
+import pawPureImage from "@assets/optimized/Hero_SmallCard_PawPure.webp";
 
 export type ProductArt = "bottle" | "cleaner" | "bag";
 

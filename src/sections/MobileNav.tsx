@@ -30,14 +30,18 @@ export function MobileNav({ open, currentLocation, onNavigate }: MobileNavProps)
   );
 }
 
-export function MobileQuickCta() {
+export function MobileQuickCta({ currentLocation }: { currentLocation: CurrentLocation }) {
+  const showQuickCta = currentLocation.pathname === "/" || currentLocation.pathname === "/products";
+
+  if (!showQuickCta) return null;
+
   return (
     <nav className="mobile-quick-cta" aria-label="Quick shopping actions">
       <a href="/#shop">
         <ShoppingBag size={18} />
         <span>Shop Kit</span>
       </a>
-      <a href="mailto:hello@wagtrail.example">
+      <a href="/contact">
         <Phone size={18} />
         <span>Contact</span>
       </a>

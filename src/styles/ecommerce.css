@@ -139,6 +139,67 @@
   font-weight: 800;
 }
 
+.shop-confidence-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 920px;
+  margin: clamp(2px, 1.2vw, 18px) auto clamp(24px, 3.4vw, 38px);
+}
+
+.shop-confidence-item,
+.checkout-confidence-item {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid rgba(33, 31, 28, 0.07);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.72), transparent 58%),
+    rgba(255, 250, 241, 0.88);
+  box-shadow: var(--shadow-xs);
+}
+
+.shop-confidence-item {
+  min-height: 72px;
+  padding: 12px 14px;
+  border-radius: 22px;
+}
+
+.shop-confidence-item > span,
+.checkout-confidence-item > span {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 16px;
+  background: #eef2df;
+  color: var(--accent-sage);
+}
+
+.shop-confidence-item strong,
+.shop-confidence-item small,
+.checkout-confidence-item strong,
+.checkout-confidence-item p {
+  display: block;
+  line-height: 1.25;
+}
+
+.shop-confidence-item strong,
+.checkout-confidence-item strong {
+  color: var(--text-primary);
+  font-size: 0.86rem;
+  font-weight: 950;
+}
+
+.shop-confidence-item small,
+.checkout-confidence-item p {
+  margin: 3px 0 0;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
 .shop-hero-art {
   position: relative;
   display: grid;
@@ -212,8 +273,20 @@
   align-items: center;
   gap: 8px;
   margin-bottom: 22px;
+  padding: 8px 12px;
+  border-radius: var(--radius-pill);
   color: var(--text-muted);
   font-weight: 900;
+  transition:
+    background var(--duration-fast) ease,
+    color var(--duration-fast) ease,
+    transform var(--duration-fast) ease;
+}
+
+.back-link:hover {
+  background: rgba(255, 244, 219, 0.84);
+  color: var(--text-primary);
+  transform: translateX(-2px);
 }
 
 .product-image,
@@ -302,6 +375,17 @@
   line-height: 1.58;
 }
 
+.product-gallery > p {
+  width: fit-content;
+  max-width: min(620px, 100%);
+  margin: 14px 0 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(33, 31, 28, 0.07);
+  border-radius: 18px;
+  background: rgba(255, 253, 248, 0.74);
+  box-shadow: var(--shadow-xs);
+}
+
 .purchase-panel,
 .detail-content-grid article,
 .cart-summary,
@@ -334,7 +418,7 @@
 }
 
 .quantity-row,
-.cart-summary div {
+.cart-summary-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -360,8 +444,8 @@
 .remove-item-button {
   display: inline-grid;
   place-items: center;
-  width: 34px;
-  height: 34px;
+  width: 40px;
+  height: 40px;
   border: 0;
   border-radius: var(--radius-pill);
   background: #fff;
@@ -393,6 +477,55 @@
   margin-top: 16px;
   padding-top: 16px;
   border-top: 1px solid var(--line);
+}
+
+.checkout-confidence {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+  margin-top: 16px;
+}
+
+.checkout-confidence-compact {
+  gap: 8px;
+}
+
+.checkout-confidence-item {
+  min-width: 0;
+  min-height: 64px;
+  padding: 10px 12px;
+  border-radius: 18px;
+}
+
+.checkout-confidence-item > div {
+  min-width: 0;
+}
+
+.checkout-confidence-item strong,
+.checkout-confidence-item p {
+  overflow-wrap: anywhere;
+}
+
+.checkout-confidence-compact .checkout-confidence-item {
+  grid-template-columns: 36px minmax(0, 1fr);
+  gap: 10px;
+  min-height: 58px;
+  padding: 9px 10px;
+}
+
+.checkout-confidence-compact .checkout-confidence-item > span {
+  width: 36px;
+  height: 36px;
+  border-radius: 14px;
+}
+
+.checkout-confidence-compact .checkout-confidence-item p {
+  margin: 3px 0 0;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-weight: 800;
+  line-height: 1.25;
 }
 
 .purchase-reassurance p {
@@ -459,7 +592,10 @@
   flex-direction: column;
   width: min(440px, 100vw);
   height: 100dvh;
+  max-height: 100dvh;
+  min-width: 0;
   padding: 20px;
+  overflow: hidden;
   background: var(--surface-page-soft);
   box-shadow: -24px 0 80px rgba(39, 36, 33, 0.18);
   transform: translateX(104%);
@@ -472,6 +608,7 @@
 
 .cart-drawer-header {
   display: flex;
+  flex: 0 0 auto;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
@@ -488,14 +625,18 @@
 }
 
 .cart-drawer .cart-line-list {
+  flex: 1 1 auto;
+  min-height: 0;
   overflow: auto;
   padding-right: 4px;
+  overscroll-behavior: contain;
 }
 
 .cart-line-item {
   display: grid;
-  grid-template-columns: 82px 1fr;
+  grid-template-columns: 82px minmax(0, 1fr);
   gap: 12px;
+  min-width: 0;
   padding: 12px;
   border-radius: var(--radius-xl);
 }
@@ -509,6 +650,7 @@
 .cart-line-main {
   display: grid;
   gap: 10px;
+  min-width: 0;
 }
 
 .cart-line-main span {
@@ -520,6 +662,7 @@
 .cart-line-main h3 {
   margin-bottom: 4px;
   font-size: 1rem;
+  overflow-wrap: anywhere;
 }
 
 .cart-line-main p {
@@ -530,9 +673,15 @@
 
 .cart-line-controls {
   display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
+}
+
+.cart-line-controls > strong {
+  white-space: nowrap;
 }
 
 .remove-item-button {
@@ -541,14 +690,25 @@
 
 .cart-summary {
   display: grid;
+  flex: 0 0 auto;
   gap: 12px;
   margin-top: auto;
   padding: 16px;
+  min-width: 0;
+  max-height: min(52dvh, 520px);
+  overflow: auto;
+  overscroll-behavior: contain;
   border-radius: var(--radius-xl);
 }
 
-.cart-summary div strong {
+.cart-page-summary {
+  max-height: none;
+  overflow: visible;
+}
+
+.cart-summary-row strong {
   font-size: 1.4rem;
+  white-space: nowrap;
 }
 
 .cart-empty-state {
@@ -558,6 +718,22 @@
   padding: 20px;
   border-radius: var(--radius-xl);
   background: rgba(255, 250, 241, 0.88);
+}
+
+.cart-page > .empty-page {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(26px, 4vw, 36px);
+  border-radius: 36px;
+  background:
+    radial-gradient(circle at 94% 8%, rgba(247, 184, 68, 0.2) 0 17%, transparent 18%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.72), transparent 58%),
+    rgba(255, 250, 241, 0.9);
+}
+
+.cart-page > .empty-page h2 {
+  font-size: clamp(2.2rem, 4.8vw, 3.35rem);
+  line-height: 0.98;
 }
 
 .cart-page-summary {
@@ -658,14 +834,13 @@
   width: min(1320px, calc(100% - 48px));
   overflow: visible;
   padding-top: clamp(24px, 3.6vw, 48px);
-  transform: translateX(clamp(-150px, -7.6vw, -84px));
 }
 
 .contact-page .contact-layout {
   position: relative;
   display: grid;
   grid-template-columns: minmax(460px, 500px) minmax(430px, 460px) minmax(260px, 286px);
-  gap: 24px;
+  gap: 36px;
   align-items: start;
   justify-content: center;
 }
@@ -673,7 +848,6 @@
 .contact-hero-panel {
   display: grid;
   gap: 0;
-  transform: translateX(-70px);
 }
 
 .contact-hero-copy {
@@ -699,7 +873,7 @@
 
 .contact-pet-scene {
   position: relative;
-  width: min(545px, 108%);
+  width: min(520px, 100%);
   min-height: 0;
   margin-top: 18px;
   backface-visibility: hidden;
@@ -766,7 +940,7 @@
 
 .contact-float-send {
   top: 13%;
-  right: -7%;
+  right: 8px;
 }
 
 .contact-float-pets {
@@ -775,7 +949,7 @@
 }
 
 .contact-float-replies {
-  right: -5%;
+  right: 8px;
   bottom: 8%;
 }
 
@@ -936,12 +1110,19 @@
   display: block;
 }
 
+.contact-support-item a {
+  display: inline-flex;
+}
+
 .contact-support-item strong {
   margin-bottom: 7px;
 }
 
 .contact-support-item b,
 .contact-support-item a {
+  width: fit-content;
+  min-height: 36px;
+  align-items: center;
   margin-bottom: 8px;
   color: var(--text-primary);
   font-size: 0.94rem;
@@ -993,4 +1174,344 @@
   display: grid;
   max-width: 760px;
   gap: 18px;
+}
+
+.faq-page {
+  position: relative;
+  isolation: isolate;
+  width: min(1180px, calc(100% - 48px));
+  padding-top: clamp(28px, 4vw, 56px);
+}
+
+.faq-page::before,
+.faq-page::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.faq-page::before {
+  top: -70px;
+  left: max(-12vw, -190px);
+  width: min(540px, 44vw);
+  height: min(540px, 44vw);
+  border-radius: 0 0 130px 0;
+  background: linear-gradient(135deg, rgba(247, 184, 68, 0.3), rgba(255, 243, 216, 0));
+  transform: rotate(45deg);
+}
+
+.faq-page::after {
+  right: min(-9vw, -90px);
+  bottom: 4%;
+  width: 250px;
+  height: 250px;
+  border-radius: 42% 58% 54% 46%;
+  background: rgba(244, 163, 55, 0.18);
+  filter: blur(1px);
+}
+
+.faq-page-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 380px);
+  gap: clamp(24px, 4vw, 58px);
+  align-items: center;
+  margin-bottom: clamp(28px, 5vw, 54px);
+}
+
+.faq-hero-copy h1 {
+  max-width: 760px;
+  margin-bottom: 18px;
+  font-size: clamp(3.5rem, 6.3vw, 6.7rem);
+  line-height: 0.9;
+}
+
+.faq-hero-copy > p:not(.eyebrow) {
+  max-width: 640px;
+  color: var(--text-muted);
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  font-weight: 800;
+  line-height: 1.62;
+}
+
+.faq-eyebrow {
+  color: var(--accent-primary);
+}
+
+.faq-support-card,
+.faq-decor-panel,
+.faq-accordion-item,
+.faq-contact-cta {
+  border: 1px solid rgba(33, 31, 28, 0.08);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.78), transparent 58%),
+    rgba(255, 250, 241, 0.9);
+  box-shadow: 0 24px 64px rgba(80, 56, 28, 0.11);
+}
+
+.faq-support-card {
+  position: relative;
+  display: grid;
+  gap: 16px;
+  overflow: hidden;
+  padding: 26px;
+  border-radius: 32px;
+}
+
+.faq-support-card::after {
+  content: "";
+  position: absolute;
+  right: -44px;
+  bottom: -54px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: #f8bd53;
+  opacity: 0.42;
+}
+
+.faq-support-icon,
+.faq-decor-badge,
+.faq-contact-cta span,
+.faq-question-index {
+  display: grid;
+  place-items: center;
+  color: var(--accent-primary);
+  background: #fff0c9;
+}
+
+.faq-support-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 22px;
+  color: var(--accent-sage);
+  background: #eef2df;
+}
+
+.faq-support-card strong {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-bottom: 7px;
+  font-size: 1.12rem;
+  line-height: 1.18;
+}
+
+.faq-support-card p {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  color: var(--text-muted);
+  font-weight: 750;
+  line-height: 1.55;
+}
+
+.faq-support-card ul {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.faq-support-card li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: fit-content;
+  max-width: 100%;
+  padding: 7px 10px;
+  border: 1px solid rgba(143, 158, 115, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 253, 248, 0.62);
+  color: var(--text-primary);
+  font-size: 0.88rem;
+  font-weight: 900;
+}
+
+.faq-support-card li svg {
+  flex: 0 0 auto;
+  color: var(--accent-sage);
+}
+
+.faq-page-layout {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.35fr) minmax(0, 0.65fr);
+  gap: clamp(18px, 3vw, 30px);
+  align-items: start;
+}
+
+.faq-decor-panel {
+  position: sticky;
+  top: 112px;
+  display: grid;
+  gap: 14px;
+  overflow: hidden;
+  min-height: 340px;
+  padding: 28px;
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(244, 163, 55, 0.35) 0 18%, transparent 19%),
+    linear-gradient(145deg, rgba(238, 242, 223, 0.95), rgba(255, 250, 241, 0.84));
+}
+
+.faq-decor-panel::before {
+  content: "";
+  position: absolute;
+  right: -32px;
+  bottom: -22px;
+  width: 190px;
+  height: 118px;
+  border-radius: 999px;
+  background: rgba(247, 184, 68, 0.28);
+}
+
+.faq-decor-badge {
+  width: 56px;
+  height: 56px;
+  border-radius: 20px;
+}
+
+.faq-decor-panel strong {
+  max-width: 12rem;
+  font-size: 1.55rem;
+  line-height: 1.06;
+}
+
+.faq-decor-panel p {
+  max-width: 14rem;
+  margin: 0;
+  color: var(--text-muted);
+  font-weight: 800;
+  line-height: 1.55;
+}
+
+.faq-decor-paws {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  align-self: end;
+  color: var(--accent-sage);
+}
+
+.faq-accordion {
+  display: grid;
+  gap: 14px;
+}
+
+.faq-accordion-item {
+  overflow: hidden;
+  border-radius: 28px;
+  transition:
+    border-color var(--duration-fast) ease,
+    box-shadow var(--duration-fast) ease,
+    background var(--duration-fast) ease;
+}
+
+.faq-accordion-item:hover,
+.faq-accordion-item.is-open {
+  border-color: rgba(233, 120, 41, 0.18);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.9), transparent 58%),
+    rgba(255, 248, 234, 0.96);
+  box-shadow: 0 26px 70px rgba(80, 56, 28, 0.14);
+}
+
+.faq-accordion-trigger {
+  display: grid;
+  grid-template-columns: 48px 1fr 42px;
+  gap: 14px;
+  align-items: center;
+  width: 100%;
+  padding: 18px 20px;
+  border: 0;
+  background: transparent;
+  color: var(--text-primary);
+  font: inherit;
+  font-weight: 950;
+  line-height: 1.18;
+  text-align: left;
+  cursor: pointer;
+}
+
+.faq-accordion-trigger:focus-visible {
+  outline: 3px solid rgba(233, 120, 41, 0.34);
+  outline-offset: -6px;
+}
+
+.faq-question-index {
+  width: 42px;
+  height: 42px;
+  border-radius: 16px;
+  color: var(--accent-sage);
+  background: #eef2df;
+  font-size: 0.8rem;
+}
+
+.faq-chevron {
+  justify-self: end;
+  color: var(--accent-primary);
+  transition: transform var(--duration-fast) ease;
+}
+
+.faq-accordion-item.is-open .faq-chevron {
+  transform: rotate(180deg);
+}
+
+.faq-accordion-panel {
+  overflow: hidden;
+}
+
+.faq-accordion-panel p {
+  margin: 0;
+  padding: 0 24px 22px 82px;
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  font-weight: 750;
+  line-height: 1.65;
+}
+
+.faq-contact-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: clamp(26px, 5vw, 48px);
+  padding: clamp(22px, 3.4vw, 34px);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 92% 16%, rgba(247, 184, 68, 0.34) 0 14%, transparent 15%),
+    linear-gradient(135deg, #eef2df, #fff4d8 64%, #f4c36b);
+}
+
+.faq-contact-cta > div {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.faq-contact-cta span {
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  border-radius: 20px;
+  color: var(--text-primary);
+  background: #fffdf8;
+}
+
+.faq-contact-cta h2 {
+  margin: 0 0 5px;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+}
+
+.faq-contact-cta p {
+  max-width: 560px;
+  margin: 0;
+  color: var(--text-muted);
+  font-weight: 800;
+  line-height: 1.5;
 }

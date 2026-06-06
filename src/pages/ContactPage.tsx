@@ -88,16 +88,15 @@ export function ContactPage() {
   }
 
   return (
-    <motion.section
-      className="page-shell contact-page"
-      variants={sectionStagger}
-      initial={reduceMotion ? false : "hidden"}
-      animate={reduceMotion ? undefined : "visible"}
-      transformTemplate={keepContactTransformOnCompositor}
-    >
-      <motion.div className="contact-layout" variants={sectionStagger}>
-        <motion.div className="contact-hero-panel" variants={sectionStagger}>
-          <motion.div className="contact-hero-copy" variants={sectionStagger}>
+    <section className="page-shell contact-page">
+      <div className="contact-layout">
+        <div className="contact-hero-panel">
+          <motion.div
+            className="contact-hero-copy"
+            variants={sectionStagger}
+            initial={reduceMotion ? false : "hidden"}
+            animate={reduceMotion ? undefined : "visible"}
+          >
             <motion.p className="eyebrow" variants={contactItem} transformTemplate={keepContactTransformOnCompositor}>
               Contact
             </motion.p>
@@ -110,7 +109,13 @@ export function ContactPage() {
             </motion.p>
           </motion.div>
 
-          <motion.div className="contact-pet-scene" aria-label="Happy WagTrail pets" variants={sectionStagger}>
+          <motion.div
+            className="contact-pet-scene"
+            aria-label="Happy WagTrail pets"
+            variants={sectionStagger}
+            initial={reduceMotion ? false : "hidden"}
+            animate={reduceMotion ? undefined : "visible"}
+          >
             <motion.img
               className="contact-pet-image"
               src={contactPetsImage}
@@ -174,12 +179,14 @@ export function ContactPage() {
               </div>
             </motion.div>
           </motion.div>
-        </motion.div>
+        </div>
 
         <motion.form
           className="contact-form"
           onSubmit={handleSubmit}
           variants={contactPanelItem}
+          initial={reduceMotion ? false : "hidden"}
+          animate={reduceMotion ? undefined : "visible"}
           transformTemplate={keepContactTransformOnCompositor}
         >
           <motion.div className="contact-card-heading" variants={contactItem} transformTemplate={keepContactTransformOnCompositor}>
@@ -263,7 +270,13 @@ export function ContactPage() {
           </motion.div>
         </motion.form>
 
-        <motion.aside className="contact-card" variants={contactPanelItem} transformTemplate={keepContactTransformOnCompositor}>
+        <motion.aside
+          className="contact-card"
+          variants={contactPanelItem}
+          initial={reduceMotion ? false : "hidden"}
+          animate={reduceMotion ? undefined : "visible"}
+          transformTemplate={keepContactTransformOnCompositor}
+        >
           <motion.img
             className="contact-support-shape"
             src={orangeShape}
@@ -323,7 +336,7 @@ export function ContactPage() {
             <Heart size={20} aria-hidden="true" />
           </motion.div>
         </motion.aside>
-      </motion.div>
-    </motion.section>
+      </div>
+    </section>
   );
 }

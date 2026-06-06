@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { CartLineItem } from "@/components/cart/CartLineItem";
 import { useCart } from "@/cart/CartContext";
+import { CheckoutConfidence } from "@/components/ui/CheckoutConfidence";
 import { formatPrice } from "@/data/products";
 import { createPayMongoCheckout } from "@/lib/checkout";
 
@@ -45,7 +46,7 @@ export function CartPage() {
           </div>
           <aside className="cart-summary cart-page-summary">
             <h2>Order Summary</h2>
-            <div>
+            <div className="cart-summary-row">
               <span>Subtotal</span>
               <strong>{formatPrice(subtotal)}</strong>
             </div>
@@ -57,6 +58,7 @@ export function CartPage() {
             <a className="button button-secondary" href="/products">
               Continue Shopping
             </a>
+            <CheckoutConfidence compact />
           </aside>
         </div>
       )}
